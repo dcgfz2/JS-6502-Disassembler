@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+
+body{
+	background-color: lightgrey;
+}
+
+.asm-body{
+	background-color: white;
+	padding: 25px;
+	width : 30%;
+	height: 85vh;
+	overflow: auto;
+	position: absolute;
+	left: 20%;
+}
+
+.upload-body{
+	background-color: white;
+	float: right;
+	position: absolute;
+	right: 30%;
+}
+
+td, th{
+ width: 40%
+}
+
+</style>
+</head>
+
+<h1 style = "text-align:center">6502 Disassembler</h1>
+
+<body>
+<div class = "upload-body"> 
+<input class="upload" type="file" id="file-upload" onchange="onUpload(event)">
+</div>
+
+<div class = "asm-body" id="result"></div>
+
+</body>
+<script src ="Deassemble.js"></script>
+<script>
+var onUpload = function(event) {
+	var read = new FileReader();
+	read.onload = function(){
+	var data = read.result;
+	var hex = "";
+	var padd = "";
+	
+	<!-- This is used to turn the file data into a hexstring/ensure bytes are padded properly-->
+	for(i = 0; i < data.length; i++){
+		padd = data.charCodeAt(i).toString(16);
+		if(padd.length != 2) {
+			padd = "0" + padd;
+		}
+		hex += padd;
+	}
+	
+	<!-- Generate a table from the asm -->
+	const tableHeader = "<table> <tr> <th>Address</th> <th>Opcode</th> <th>Syntax</th> </tr>";
+	document.getElementById("result").innerHTML = tableHeader + disassembler(hex) + "</table>";
+	}
+	
+	read.readAsBinaryString(event.target.files[0]);
+};
+
+</script>
+
+</html>
