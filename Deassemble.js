@@ -194,7 +194,7 @@ function disassembler(hexString) {
 		startingAddr = pc;
 		
 		if(!opcodes.hasOwnProperty(hexString.substring(pc,pc+2))){
-			instruction = {"code": ".DB", "len": 0, "addr": 3};
+			instruction = {"code": "???", "len": 0, "addr": 0};
 		} else{
 			instruction = opcodes[hexString.substring(pc,pc+2)];
 		}
