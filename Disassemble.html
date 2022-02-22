@@ -30,7 +30,8 @@
 			<div class = "upload-body"> 
 				<input class="form-control-file" type="file" id="file-upload" onchange="onUpload(event)">
 				</div>
-			<div class = "mt-4 p-5 bg-success text-white rounded" >
+			<button type="button" class="btn btn-success my-2" id="button" disabled>Disassemble</button>
+			<div class = "mt-2 p-5 bg-success text-white rounded" >
 				<p class="text-break" id ="hex"></p>
 			</div>
 		</div>
@@ -66,7 +67,10 @@ var onUpload = function(event) {
 	document.getElementById("hex").innerHTML = bytes.join(' ').toUpperCase();
 	<!-- Generate a table from the asm -->
 
-	document.getElementById("result").getElementsByTagName('tbody')[0].innerHTML = disassembler(hex);
+	document.getElementById("button").disabled = false;
+	document.getElementById("result").onclick = function(){ document.getElementById("result").getElementsByTagName('tbody')[0].innerHTML = disassembler(hex);}
+
+	
 	}
 	
 	read.readAsBinaryString(event.target.files[0]);
