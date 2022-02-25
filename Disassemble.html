@@ -28,7 +28,7 @@
 		</div>
 		<div class="col-sm-4">
 			<div class = "upload-body"> 
-				<input class="form-control-file" type="file" id="file-upload" onchange="onUpload(event)">
+				<input class="form-control-file" type="file" id="file-upload" onchange="onUpload(event)"/>
 				</div>
 			<button type="button" class="btn btn-success my-2" id="button" disabled>Disassemble</button>
 			<div class = "mt-2 p-5 bg-success text-white rounded" >
@@ -53,7 +53,7 @@ var onUpload = function(event) {
 	var hex = "";
 	var padd = "";
 	
-	<!-- This is used to turn the file data into a hexstring/ensure bytes are padded properly-->
+	//This is used to turn the file data into a hexstring/ensure bytes are padded properly
 	for(i = 0; i < data.length; i++){
 		padd = data.charCodeAt(i).toString(16);
 		if(padd.length != 2) {
@@ -65,7 +65,7 @@ var onUpload = function(event) {
 	var bytes = hex.match(/.{1,2}/g);
 
 	document.getElementById("hex").innerHTML = bytes.join(' ').toUpperCase();
-	<!-- Generate a table from the asm -->
+	//Generate a table from the asm
 
 	document.getElementById("button").disabled = false;
 	document.getElementById("result").onclick = function(){ document.getElementById("result").getElementsByTagName('tbody')[0].innerHTML = disassembler(hex);}
