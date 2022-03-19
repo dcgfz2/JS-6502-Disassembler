@@ -29,7 +29,9 @@
 			<div class = "upload-body"> 
 				<input class="form-control-file" type="file" id="file-upload" onchange="onUpload(event)"/>
 				</div>
-			<button type="button" class="btn btn-success my-2" id="button" disabled>Disassemble</button>
+			<button type="button" class="btn btn-success my-2" id="button" disabled>
+				Disassemble
+			</button>
 			<div class = "mt-2 p-5 bg-success text-white rounded" >
 				<p class="text-break mh-100" id ="hex"></p>
 			</div>
@@ -67,11 +69,16 @@ var onUpload = function(event) {
 	//Generate a table from the asm
 
 	document.getElementById("button").disabled = false;
-	document.getElementById("button").onclick = function(){ document.getElementById("result").getElementsByTagName('tbody')[0].innerHTML = disassembler(hex);}
+	
+	document.getElementById("button").addEventListener("click",function(){ document.getElementById("button").innerHTML= "<span class=\"spinner-border spinner-border-sm\"></span> Loading...";});
+	document.getElementById("button").addEventListener("click",function(){ document.getElementById("result").getElementsByTagName('tbody')[0].innerHTML = disassembler(hex);});
+	document.getElementById("button").addEventListener("click",function(){ document.getElementById("button").innerHTML= "Disassemble";});
 
 	
-	}
 	
+
+}
+
 	read.readAsBinaryString(event.target.files[0]);
 };
 
