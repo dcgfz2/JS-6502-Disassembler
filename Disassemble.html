@@ -68,7 +68,7 @@ var onUpload = function(event) {
 	//Generate a table from the asm
 
 	document.getElementById("button").disabled = false;
-	document.getElementById("result").onclick = function(){ document.getElementById("result").getElementsByTagName('tbody')[0].innerHTML = disassembler(hex);}
+	document.getElementById("button").onclick = function(){ document.getElementById("result").getElementsByTagName('tbody')[0].innerHTML = disassembler(hex);}
 
 	
 	}
