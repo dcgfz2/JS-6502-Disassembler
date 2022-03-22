@@ -69,10 +69,16 @@ var onUpload = function(event) {
 	//Generate a table from the asm
 
 	document.getElementById("button").disabled = false;
+
+	document.getElementById("button").addEventListener("click",()=>{ 
+		document.getElementById("button").innerHTML= "<span class=\"spinner-border spinner-border-sm\"></span> Loading..."
+		setTimeout(()=>{
+		document.getElementById("result").getElementsByTagName('tbody')[0].innerHTML = disassembler(hex);
+		document.getElementById("button").innerHTML= "Disassemble";
+	},600);
 	
-	document.getElementById("button").addEventListener("click",function(){ document.getElementById("button").innerHTML= "<span class=\"spinner-border spinner-border-sm\"></span> Loading...";});
-	document.getElementById("button").addEventListener("click",function(){ document.getElementById("result").getElementsByTagName('tbody')[0].innerHTML = disassembler(hex);});
-	document.getElementById("button").addEventListener("click",function(){ document.getElementById("button").innerHTML= "Disassemble";});
+});
+
 
 	
 	
